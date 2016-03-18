@@ -15,18 +15,18 @@ If you want to clean the build you cand do it with the <code> wclean.bat </code>
 
 ## Linux - GCC
 In "DarcEngine\dependencies\DarcEngine" directory:
-	<code> ./lbuild.sh </code>
+	<code> sh lbuild.sh </code>
 And finally in "DarcEngine"
-	<code> ./lbuild.sh </code>
+	<code> sh lbuild.sh </code>
 
-If you want to clean the build you cand do it with the <code> lclean.sh </code> command.
+If you want to clean the build you cand do it with the <code> sh lclean.sh </code> command.
 
 ## OS X - XCode
 In "DarcEngine\dependencies\DarcEngine" directory:
-	<code> ./mbuild.sh </code>
+	<code> sh mbuild.sh </code>
 And finally in "DarcEngine"
-	<code> ./mbuild.sh </code>
+	<code> sh mbuild.sh </code>
 
-If you want to clean the build you cand do it with the <code> mclean.bat </code> command.
+If you want to clean the build you cand do it with the <code> sh mclean.bat </code> command.
 
 I think that is very easy to use by now, I hope that in the future will be easier tha now :).
