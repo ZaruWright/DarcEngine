@@ -4,7 +4,7 @@
 int main (int argc, char* argv[]){
 
 	std::cout << "Funciona" << std::endl;
-	HolaMundo();
+	Engine::CEngine::getInstance().init();
 
 	return 0;
 }

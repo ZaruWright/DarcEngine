@@ -6,6 +6,9 @@ If you want to execute the engine with the sample applications you must to
 do the follow steps.
 
 ## Windows - Visual Studio 12
+Important!!!
+You must to execute the following executables with the Developer Command Prompt for VS2013. If not it won't work properly.
+
 In "DarcEngine\dependencies\DarcEngine" directory:
 	<code> ./wbuild.bat </code>
 And finally in "DarcEngine"
