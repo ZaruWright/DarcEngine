@@ -2,9 +2,10 @@ file (GLOB GRAPHICS_SOURCES
 		"*.h"
 		"*.cpp")
 
-add_library(Graphics STATIC ${GRAPHICS_SOURCES})
+# Additional include directories
+include_directories(${CMAKE_SOURCE_DIR}/Dependencies/OpenGl/include) # OpenGl
 
-message ("-----------" ${PROJECT_BINARY_DIR})
+add_library(Graphics STATIC ${GRAPHICS_SOURCES})
 
 # For copy dlls
 # install (TARGETS Graphics RUNTIME DESTINATION "${PROJECT_BINARY_DIR}/bin")

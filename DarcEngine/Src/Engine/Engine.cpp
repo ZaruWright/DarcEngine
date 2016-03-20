@@ -9,10 +9,13 @@
 //
 //	Author: ZaruWright
 //
-#include "Engine.h"
 #include <iostream>
 
-namespace Engine {
+#include "Engine.h"
+#include "Graphics/Graphics.h"
+#include "Graphics/OpenGl.h"
+
+namespace DarcEngine {
 
 	CEngine& CEngine::getInstance()
 	{
@@ -23,7 +26,8 @@ namespace Engine {
 
 	void CEngine::init()
 	{
-		std::cout << "Initializing Darc Engine...\n";
-	}
+		std::cout << "Initializing Darc Engine..." << std::endl;
+		DarcGraphics::COpenGl::getInstance().init();
+	} // init
 
 };
