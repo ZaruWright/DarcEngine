@@ -11,8 +11,15 @@
 #include <windows.h>
 #pragma warning (disable:4244)		/* disable bogus conversion warnings */
 #endif
-#include <GL/gl.h>
-#include <GL/glu.h>
+
+// HACK!! because in OsX the name of the folder that contains OpenGl is different
+#ifdef __APPLE__
+	#include <OpenGL/gl.h>
+	#include <OpenGL/glu.h>
+#else
+	#include <GL/gl.h>
+	#include <GL/glu.h>
+#endif/*__APPLE__*/
 
 /* define APIENTRY and CALLBACK to null string if we aren't on Win32 */
 #if !defined(WIN32)
