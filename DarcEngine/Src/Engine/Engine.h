@@ -40,11 +40,11 @@ namespace DarcEngine{
 
 		// Constructor by default. It is private because
 		// you only can get the class instance from getInstance method.
-		CEngine::CEngine() = default;
+		CEngine() = default;
 
 		// Destructor by default
-		CEngine::~CEngine() = default;
+		~CEngine() = default;
 	};
 }
 
-#endif ENGINE_ENGINE_H
+#endif // ENGINE_ENGINE_H

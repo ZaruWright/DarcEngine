@@ -9,8 +9,8 @@
 //
 //	Author: ZaruWright
 //
-#ifndef GRAPHICS_GRAPHCIS_H
-#define GRAPHICS_GRAPHCIS_H
+#ifndef GRAPHICS_GRAPHICS_H
+#define GRAPHICS_GRAPHICS_H
 
 namespace DarcGraphics{
 
@@ -37,12 +37,12 @@ namespace DarcGraphics{
 	private:
 		// Constructor by default. It is private because
 		// you only can get the class instance from getInstance method.
-		CGraphics::CGraphics() = default;
+		CGraphics() = default;
 
 		// Destructor by default
-		CGraphics::~CGraphics() = default;
+		~CGraphics() = default;
 	};
 
 }
 
-#endif GRAPHICS_GRAPHCIS_H
+#endif // GRAPHICS_GRAPHICS_H

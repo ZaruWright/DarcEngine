@@ -40,13 +40,13 @@ namespace DarcGraphics{
 	private:
 		// Constructor by default. It is private because
 		// you only can get the class instance from getInstance method.
-		COpenGl::COpenGl() = default;
+		COpenGl() = default;
 
 		// Destructor by default
-		COpenGl::~COpenGl() = default;
+		~COpenGl() = default;
 
 	};
 
 }
 
-#endif GRAPHICS_OPENGL_H
+#endif // GRAPHICS_OPENGL_H
