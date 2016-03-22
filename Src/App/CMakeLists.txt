@@ -20,6 +20,19 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	set_property(TARGET stOpenGl PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/libglut.a)
 	install (FILES ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/libglut.3.6.so DESTINATION "${PROJECT_BINARY_DIR}/bin")
+
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+	find_library(OPEN_GL_OSX OpenGL)
+	if (NOT OPEN_GL_OSX)
+		message("--- FATAL ERROR: OpenGL not found")
+	endif()
+
+	find_library(GLUT_OSX GLUT)
+	if (NOT GLUT_OSX)
+		message("--- FATAL ERROR: GLUT not found")
+	endif()	
+
 endif()
 
 
@@ -32,6 +45,10 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	target_link_libraries(App Engine Graphics stOpenGl X11 GL GLU)
+
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+	target_link_libraries(App Engine Graphics ${OPEN_GL_OSX} ${GLUT_OSX})
+
 endif()
 
 # Install

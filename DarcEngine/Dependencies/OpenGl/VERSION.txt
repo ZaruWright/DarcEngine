@@ -1,1 +1,2 @@
 Glut 3.6 version.
+For mac using 3.7 version on my pc at this moment. But the version that uses Xcode to link the library is the Glut version installed in your PC.
