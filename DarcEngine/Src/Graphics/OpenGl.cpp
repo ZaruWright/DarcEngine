@@ -14,6 +14,19 @@
 
 #include "OpenGl.h"
 
+void display()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(1.0, 1.0, 1.0);
+
+	glLoadIdentity();
+	//glMatrixMode(GL_PROJECTION);
+	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	glScalef(1.0, 2.0, 1.0);
+	glutWireCube(1.0);
+	glFlush();
+}
+
 namespace DarcGraphics{
 
 	COpenGl& COpenGl::getInstance()
@@ -30,6 +43,12 @@ namespace DarcGraphics{
 		char* argv = {"DarcEngine"};
 		glutInit(&argcp, &argv);
 		std::cout << "GlutInit..." << std::endl;
+		glutInitWindowSize(500, 500);
+		glutInitWindowPosition(100, 100);
+		glutCreateWindow("Init my first Window");
+		glutDisplayFunc(display);
+		glutMainLoop();
+		std::cout << "There is my first window!" << std::endl;
 
 	}
 

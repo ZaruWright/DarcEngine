@@ -41,7 +41,7 @@ add_executable(App ${APP_SOURCES})
 
 # Additional dependencies
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	target_link_libraries(App Engine Graphics stOpenGl)
+	target_link_libraries(App Engine Graphics stOpenGl opengl32.lib glu32.lib)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	target_link_libraries(App Engine Graphics stOpenGl X11 GL GLU)
