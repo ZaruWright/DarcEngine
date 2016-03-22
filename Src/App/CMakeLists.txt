@@ -10,15 +10,15 @@ link_directories(${CMAKE_SOURCE_DIR}/DarcEngine/_build/lib)
 link_directories(${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib) # OpenGl
 
 # Adding OpenGl library
-add_library(stOpenGl STATIC IMPORTED)
+add_library(stGLUT STATIC IMPORTED)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	set_property(TARGET stOpenGl PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/glut32.lib)
+	set_property(TARGET stGLUT PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/glut32.lib)
 	# Copy OpenGl Dll
 	install (FILES ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/glut32.dll DESTINATION "${PROJECT_BINARY_DIR}/bin")
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	set_property(TARGET stOpenGl PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/libglut.a)
+	set_property(TARGET stGLUT PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/libglut.a)
 	install (FILES ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/libglut.3.6.so DESTINATION "${PROJECT_BINARY_DIR}/bin")
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -41,10 +41,10 @@ add_executable(App ${APP_SOURCES})
 
 # Additional dependencies
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	target_link_libraries(App Engine Graphics stOpenGl opengl32.lib glu32.lib)
+	target_link_libraries(App Engine Graphics stGLUT opengl32.lib glu32.lib)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	target_link_libraries(App Engine Graphics stOpenGl X11 GL GLU)
+	target_link_libraries(App Engine Graphics stGLUT X11 GL GLU Xi Xmu)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	target_link_libraries(App Engine Graphics ${OPEN_GL_OSX} ${GLUT_OSX})
