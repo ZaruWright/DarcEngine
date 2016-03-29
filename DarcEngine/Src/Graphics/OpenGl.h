@@ -16,35 +16,28 @@
 
 namespace DarcGraphics{
 
-	class COpenGl{
-	public:
-
-		/**
-		Returns the class instance
-		*/
-		static COpenGl& getInstance();
-
-		/**
-		We do no not allow to copy the instance, we'll
-		want have only one.
-		*/
-		COpenGl(const CGraphics &engine) = delete; // Disallowed to do a copy
-
-		/**
-		By the same reason of above, we do not allow the operator =.
-		*/
-		void operator=(const CGraphics &engine) = delete; // Disallowed used the operator =
-
-		void init();
-
-	private:
-		// Constructor by default. It is private because
-		// you only can get the class instance from getInstance method.
-		COpenGl() = default;
-
-		// Destructor by default
-		~COpenGl() = default;
-
+    class COpenGl : public CGraphics{
+    public:
+        /**
+        Constructor by default.
+        */
+        COpenGl() = default;
+        
+        /**
+        Destructor by default.
+        */
+        ~COpenGl() = default;
+        
+        /**
+        Returns the class instance
+        */
+        static COpenGl& getInstance();
+        
+        /**
+        Ogre3D initialization.
+        */
+        static void init();
+        
 	};
 
 }

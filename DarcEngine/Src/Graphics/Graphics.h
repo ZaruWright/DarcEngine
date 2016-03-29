@@ -12,35 +12,40 @@
 #ifndef GRAPHICS_GRAPHICS_H
 #define GRAPHICS_GRAPHICS_H
 
+#include "Enumerators.h"
+
 namespace DarcGraphics{
 
 	class CGraphics{
-	public:
-		/**
-		Returns the class instance
-		*/
-		static CGraphics& getInstance();
-
-		/**
-		We do no not allow to copy the instance, we'll
-		want have only one.
-		*/
-		CGraphics(const CGraphics &engine) = delete; // Disallowed to do a copy
-
-		/**
-		By the same reason of above, we do not allow the operator =.
-		*/
-		void operator=(const CGraphics &engine) = delete; // Disallowed used the operator =
-
-		void init();
-
-	private:
-		// Constructor by default. It is private because
-		// you only can get the class instance from getInstance method.
-		CGraphics() = default;
-
-		// Destructor by default
-		~CGraphics() = default;
+	
+    public:
+        
+        /**
+        Constructor by default.
+        */
+        CGraphics() = default;
+        
+        /**
+        Destructor by default.
+        */
+        ~CGraphics() = default;
+        
+        /**
+        Returns the class instance.
+        */
+        static CGraphics& getInstance();
+        
+        /**
+        Init our Graphic Engine depend on the user selection.
+        In this moment, you can choose between "GraphicEngines::OGRE3D"
+        and "GraphicEngines::OPENGL" as Graphic Engine.
+        */
+        static void init(const GraphicEngines &graphicEngine);
+    
+    
+    private:
+        // The Graphic Engine selected by the user.
+        static GraphicEngines _graphicEngineUsed;
 	};
 
 }

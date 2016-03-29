@@ -12,6 +12,8 @@
 #ifndef ENGINE_ENGINE_H
 #define ENGINE_ENGINE_H
 
+#include "Graphics/Enumerators.h"
+
 namespace DarcEngine{
 
 	class CEngine{
@@ -33,8 +35,11 @@ namespace DarcEngine{
 		By the same reason of above, we do not allow the operator =.
 		*/
 		void operator=(const CEngine &engine) = delete; // Disallowed used the operator =
-
-		void init();
+        
+        /**
+        Initialization of DarcEngine. Here we initialize the Graphics, Sounds, etc..
+        */
+		void init(const DarcGraphics::GraphicEngines &graphicEngine);
 
 	private:
 

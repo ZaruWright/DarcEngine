@@ -10,9 +10,41 @@
 //	Author: ZaruWright
 //
 #include "Graphics.h"
+#include "Ogre.h"
+#include "OpenGl.h"
+
+#include <iostream>
+#include <assert.h>
 
 namespace DarcGraphics{
+    
+    GraphicEngines CGraphics::_graphicEngineUsed = GraphicEngines::NONE;
 
+    void CGraphics::init(const GraphicEngines &graphicEngine)
+    {
+        std::cout << "Init Graphic Engine..." << std::endl;
+        _graphicEngineUsed = graphicEngine;
+        
+        if (_graphicEngineUsed == GraphicEngines::OGRE3D)
+            COgre::init();
+        else if (_graphicEngineUsed == GraphicEngines::OPENGL)
+            COpenGl::init();
+        
+    } // init
+    
+    CGraphics& CGraphics::getInstance()
+    {
+        assert(_graphicEngineUsed != GraphicEngines::NONE && "You must initializate at least once!!");
+        
+        static CGraphics instance;
+        
+        if (_graphicEngineUsed == GraphicEngines::OGRE3D)
+            instance = COgre::getInstance();
+        else if (_graphicEngineUsed == GraphicEngines::OPENGL)
+            instance = COpenGl::getInstance();
+        
+        return instance;
 
+    } // getInstance
 
 }

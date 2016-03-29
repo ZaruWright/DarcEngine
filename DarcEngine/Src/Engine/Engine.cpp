@@ -13,7 +13,7 @@
 
 #include "Engine.h"
 #include "Graphics/Graphics.h"
-#include "Graphics/OpenGl.h"
+
 
 namespace DarcEngine {
 
@@ -24,10 +24,11 @@ namespace DarcEngine {
 		return instance;
 	} // getInstance
 
-	void CEngine::init()
+	void CEngine::init(const DarcGraphics::GraphicEngines &graphicEngine)
 	{
 		std::cout << "Initializing Darc Engine..." << std::endl;
-		DarcGraphics::COpenGl::getInstance().init();
+        DarcGraphics::CGraphics::init(graphicEngine);
+		//DarcGraphics::COpenGl::getInstance().init();
 	} // init
 
 };
