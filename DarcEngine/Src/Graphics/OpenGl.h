@@ -16,8 +16,9 @@
 
 namespace DarcGraphics{
 
-    class COpenGl : public CGraphics{
-    public:
+    class COpenGl : CGraphics{
+    
+	protected:
         /**
         Constructor by default.
         */
@@ -38,6 +39,8 @@ namespace DarcGraphics{
         */
         static void init();
         
+		// Friedns
+		friend class CGraphics;
 	};
 
 }

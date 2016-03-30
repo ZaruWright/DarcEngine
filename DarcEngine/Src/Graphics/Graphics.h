@@ -19,31 +19,31 @@ namespace DarcGraphics{
 	class CGraphics{
 	
     public:
-        
-        /**
-        Constructor by default.
-        */
-        CGraphics() = default;
-        
-        /**
-        Destructor by default.
-        */
-        ~CGraphics() = default;
-        
-        /**
-        Returns the class instance.
-        */
-        static CGraphics& getInstance();
-        
-        /**
-        Init our Graphic Engine depend on the user selection.
-        In this moment, you can choose between "GraphicEngines::OGRE3D"
-        and "GraphicEngines::OPENGL" as Graphic Engine.
-        */
-        static void init(const GraphicEngines &graphicEngine);
+
+		/**
+		Returns the class instance.
+		*/
+		static CGraphics& getInstance();
+
+		/**
+		Init our Graphic Engine depend on the user selection.
+		In this moment, you can choose between "GraphicEngines::OGRE3D"
+		and "GraphicEngines::OPENGL" as Graphic Engine.
+		*/
+		static void init(const GraphicEngines &graphicEngine);
     
-    
-    private:
+    protected:
+
+		/**
+		Constructor by default.
+		*/
+		CGraphics() = default;
+
+		/**
+		Destructor by default.
+		*/
+		~CGraphics() = default;
+
         // The Graphic Engine selected by the user.
         static GraphicEngines _graphicEngineUsed;
 	};

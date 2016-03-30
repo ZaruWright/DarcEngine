@@ -16,8 +16,10 @@
 
 namespace DarcGraphics{
 
-    class COgre : public CGraphics{
-    public:
+    class COgre : CGraphics{
+    
+	protected:
+
         /**
         Constructor by default.
         */
@@ -37,6 +39,9 @@ namespace DarcGraphics{
         Ogre3D initialization.
         */
         static void init();
+
+		// Friends
+		friend class CGraphics;
 
 	};
 
