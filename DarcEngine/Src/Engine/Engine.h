@@ -41,6 +41,11 @@ namespace DarcEngine{
         */
 		void init(const DarcGraphics::GraphicEngines &graphicEngine);
 
+		/**
+		Starts to run the Darc Engine.
+		*/
+		void run();
+
 	private:
 
 		// Constructor by default. It is private because
@@ -49,6 +54,9 @@ namespace DarcEngine{
 
 		// Destructor by default
 		~CEngine() = default;
+
+		// Time elapsed to do a fixed loop
+		float _elapsedTime;
 	};
 }
 

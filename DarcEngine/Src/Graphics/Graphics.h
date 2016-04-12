@@ -44,8 +44,19 @@ namespace DarcGraphics{
 		*/
 		~CGraphics() = default;
 
+		/**
+		Update the graphic engine
+		*/
+		void tick(float msecs);
+
         // The Graphic Engine selected by the user.
         static GraphicEngines _graphicEngineUsed;
+
+		float windowWidth;
+		float windowHeight;
+		float windowPositionX;
+		float windowpositionY;
+
 	};
 
 }

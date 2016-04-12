@@ -12,6 +12,7 @@
 #include <iostream>
 
 #include "Engine.h"
+#include "Time.h"
 #include "Graphics/Graphics.h"
 
 
@@ -27,8 +28,18 @@ namespace DarcEngine {
 	void CEngine::init(const DarcGraphics::GraphicEngines &graphicEngine)
 	{
 		std::cout << "Initializing Darc Engine..." << std::endl;
+		
         DarcGraphics::CGraphics::init(graphicEngine);
 		//DarcGraphics::COpenGl::getInstance().init();
+
+		// The last thing we do is init the Time.
+		DarcEngine::CTime::init();
+
 	} // init
+
+	void CEngine::run()
+	{
+		
+	} // run
 
 };

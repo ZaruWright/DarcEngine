@@ -28,7 +28,7 @@ namespace DarcGraphics{
         if (_graphicEngineUsed == GraphicEngines::OGRE3D)
             COgre::init();
         else if (_graphicEngineUsed == GraphicEngines::OPENGL)
-            COpenGl::init();
+            COpenGl::init(500,500,100,100);
         
     } // init
     
@@ -46,5 +46,10 @@ namespace DarcGraphics{
         return instance;
 
     } // getInstance
+
+	void CGraphics::tick(float msecs)
+	{
+	
+	} // tick
 
 }

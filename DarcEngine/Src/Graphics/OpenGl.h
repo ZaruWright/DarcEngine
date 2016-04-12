@@ -37,7 +37,7 @@ namespace DarcGraphics{
         /**
         Ogre3D initialization.
         */
-        static void init();
+		static void init(int windowWidth, int windowHeight, int windowPositionX, int windowPositionY);
         
 		// Friedns
 		friend class CGraphics;

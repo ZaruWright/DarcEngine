@@ -4,6 +4,7 @@ file (GLOB GRAPHICS_SOURCES
 
 # Additional include directories
 include_directories(${CMAKE_SOURCE_DIR}/Dependencies/OpenGl/include) # OpenGl
+#include_directories(${CMAKE_SOURCE_DIR}/Src)
 
 add_library(Graphics STATIC ${GRAPHICS_SOURCES})
 

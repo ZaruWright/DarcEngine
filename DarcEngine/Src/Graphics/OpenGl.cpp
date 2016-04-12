@@ -36,20 +36,21 @@ namespace DarcGraphics{
 		return instance;
 	} // getInstance
 
-	void COpenGl::init()
+	void COpenGl::init(int windowWidth,int windowHeight, int windowPositionX, int windowPositionY)
 	{
 		std::cout << "Initializing OpenGl..." << std::endl;
 		int argcp = 1;
 		char* argv = {"DarcEngine"};
 		glutInit(&argcp, &argv);
 		std::cout << "GlutInit..." << std::endl;
-		glutInitWindowSize(500, 500);
-		glutInitWindowPosition(100, 100);
+
+		glutInitWindowSize(windowWidth, windowHeight);
+		glutInitWindowPosition(windowPositionX, windowPositionY);
+
 		glutCreateWindow("Init my first Window");
 		glutDisplayFunc(display);
 		glutMainLoop();
 		std::cout << "There is my first window!" << std::endl;
-
 	}
 
 }
