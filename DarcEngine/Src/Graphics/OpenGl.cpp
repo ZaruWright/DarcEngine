@@ -14,43 +14,33 @@
 
 #include "OpenGl.h"
 
-void display()
-{
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0, 1.0, 1.0);
-
-	glLoadIdentity();
-	//glMatrixMode(GL_PROJECTION);
-	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	glScalef(1.0, 2.0, 1.0);
-	glutWireCube(1.0);
-	glFlush();
-}
 
 namespace DarcGraphics{
+
+	DarcGraphics::CGraphics* DarcGraphics::CGraphics::_graphicInstance = nullptr;
 
 	COpenGl& COpenGl::getInstance()
 	{
 		static COpenGl instance; // Guaranteed to be destroyed.
 		// Instantiated on first use.
+		_graphicInstance = &instance;
+
 		return instance;
 	} // getInstance
 
-	void COpenGl::init(int windowWidth,int windowHeight, int windowPositionX, int windowPositionY)
+	void COpenGl::init()
 	{
-		std::cout << "Initializing OpenGl..." << std::endl;
-		int argcp = 1;
-		char* argv = {"DarcEngine"};
-		glutInit(&argcp, &argv);
-		std::cout << "GlutInit..." << std::endl;
+		std::cout << "Init OpenGl..." << std::endl;
+	} // init
 
-		glutInitWindowSize(windowWidth, windowHeight);
-		glutInitWindowPosition(windowPositionX, windowPositionY);
+	void COpenGl::release()
+	{
+		std::cout << "Release OpenGl..." << std::endl;
+	} // release
 
-		glutCreateWindow("Init my first Window");
-		glutDisplayFunc(display);
-		glutMainLoop();
-		std::cout << "There is my first window!" << std::endl;
-	}
+	void COpenGl::tick(float msecs)
+	{
+		
+	} // tick
 
 }

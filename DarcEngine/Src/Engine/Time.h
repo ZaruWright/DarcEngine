@@ -42,9 +42,9 @@ namespace DarcEngine{
 		static void init();
 
 		/**
-		We get the elapsed time in milliseconds since the init the Time or another elapsedTime call.
+		We get the elapsed time in seconds since the init the Time or another elapsedTime call.
 		*/
-		int elapsedTime();
+		float elapsedTime();
 
 	private:
 

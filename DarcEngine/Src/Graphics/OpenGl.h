@@ -13,10 +13,16 @@
 #define GRAPHICS_OPENGL_H
 
 #include "Graphics.h"
+#include "Engine/Engine.h"
 
 namespace DarcGraphics{
 
-    class COpenGl : CGraphics{
+    class COpenGl : public CGraphics{
+	public:
+		/**
+		Returns the class instance
+		*/
+		static COpenGl& getInstance();
     
 	protected:
         /**
@@ -30,17 +36,21 @@ namespace DarcGraphics{
         ~COpenGl() = default;
         
         /**
-        Returns the class instance
+        OpenGl initialization.
         */
-        static COpenGl& getInstance();
-        
-        /**
-        Ogre3D initialization.
-        */
-		static void init(int windowWidth, int windowHeight, int windowPositionX, int windowPositionY);
-        
-		// Friedns
-		friend class CGraphics;
+		void init() override;
+
+		/**
+		OpenGl release
+		*/
+		void release() override;
+
+		/**
+		Update graphics
+		*/
+		void tick(float msecs) override;
+
+	private:
 	};
 
 }

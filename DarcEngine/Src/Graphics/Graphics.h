@@ -13,6 +13,7 @@
 #define GRAPHICS_GRAPHICS_H
 
 #include "Enumerators.h"
+#include "Engine/Engine.h"
 
 namespace DarcGraphics{
 
@@ -23,15 +24,8 @@ namespace DarcGraphics{
 		/**
 		Returns the class instance.
 		*/
-		static CGraphics& getInstance();
-
-		/**
-		Init our Graphic Engine depend on the user selection.
-		In this moment, you can choose between "GraphicEngines::OGRE3D"
-		and "GraphicEngines::OPENGL" as Graphic Engine.
-		*/
-		static void init(const GraphicEngines &graphicEngine);
-    
+		static CGraphics* getInstance(){ return _graphicInstance; };
+		
     protected:
 
 		/**
@@ -45,17 +39,31 @@ namespace DarcGraphics{
 		~CGraphics() = default;
 
 		/**
+		Init our Graphic Engine depend on the user selection.
+		In this moment, you can choose between "GraphicEngines::OGRE3D"
+		and "GraphicEngines::OPENGL" as Graphic Engine.
+		*/
+		virtual void init() = 0;
+
+		/**
+		Release our Graphic Engine.
+		*/
+		virtual void release() = 0;
+
+		/**
 		Update the graphic engine
 		*/
-		void tick(float msecs);
+		virtual void tick(float msecs) = 0;
 
-        // The Graphic Engine selected by the user.
-        static GraphicEngines _graphicEngineUsed;
+		float _windowWidth;
+		float _windowHeight;
+		float _windowPositionX;
+		float _windowpositionY;
 
-		float windowWidth;
-		float windowHeight;
-		float windowPositionX;
-		float windowpositionY;
+		static CGraphics* _graphicInstance;
+
+		// friends
+		friend class DarcEngine::CEngine;
 
 	};
 

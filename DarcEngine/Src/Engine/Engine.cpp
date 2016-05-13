@@ -14,6 +14,7 @@
 #include "Engine.h"
 #include "Time.h"
 #include "Graphics/Graphics.h"
+#include "Graphics/OpenGl.h"
 
 
 namespace DarcEngine {
@@ -29,17 +30,56 @@ namespace DarcEngine {
 	{
 		std::cout << "Initializing Darc Engine..." << std::endl;
 		
-        DarcGraphics::CGraphics::init(graphicEngine);
-		//DarcGraphics::COpenGl::getInstance().init();
+        //DarcGraphics::CGraphics::init(graphicEngine);
+		//DarcGraphics::CGraphics::getInstance()
+		if (graphicEngine == DarcGraphics::GraphicEngines::OPENGL)
+			DarcGraphics::COpenGl::getInstance();
+
+		DarcGraphics::CGraphics::getInstance()->init();
 
 		// The last thing we do is init the Time.
 		DarcEngine::CTime::init();
 
+		// Starts to run app
+		//run();
+
 	} // init
+
+	void CEngine::release()
+	{
+		std::cout << "Release Darc Engine..." << std::endl;
+		DarcGraphics::CGraphics::getInstance()->release();
+
+	} // release
 
 	void CEngine::run()
 	{
-		
+		// To init time
+		CTime::getInstance().elapsedTime();
+		float newElapsedTime = 0;
+		float elapsedTime = 0;
+		float fps = 0;
+		unsigned int frames = 0;
+		while (!exit)
+		{
+			++frames; // Add a new frame
+
+			newElapsedTime = CTime::getInstance().elapsedTime(); // Get the elapsed time
+			elapsedTime += newElapsedTime;
+			fps += newElapsedTime;
+
+			//DarcGraphics::CGraphics::getInstance().tick(newElapsedTime);
+
+			#ifdef _DEBUG 
+			while (fps >= 1)
+			{
+				std::cout << "FPS: " << frames << std::endl;
+				std::cout << "Elapsed Time: " << elapsedTime << std::endl;
+				frames = 0;
+				fps = 0;
+			} 
+			#endif
+		}
 	} // run
 
 };

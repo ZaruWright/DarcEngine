@@ -30,17 +30,21 @@ namespace DarcEngine {
 	void CTime::init()
 	{
 		std::cout << "Init Time..." << std::endl;
-		epoch = std::chrono::system_clock::now();
+		epoch = std::chrono::high_resolution_clock::now();
 		start = epoch;
 	} // init
 
-	int CTime::elapsedTime()
+	float CTime::elapsedTime()
 	{
-		end = std::chrono::system_clock::now();
-		int elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+		end = std::chrono::high_resolution_clock::now();
+
+		std::chrono::duration<double, std::milli> fp_ms = end - start;
+
+		//std::cout << "f()a took " << fp_ms.count() << std::endl;
+
 		start = end;
 		
-		return elapsedTime;
+		return static_cast<float>(fp_ms.count() / 1000);
 	} // elapsedTime
 
 };

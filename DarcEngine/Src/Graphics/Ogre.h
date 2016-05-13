@@ -17,32 +17,37 @@
 namespace DarcGraphics{
 
     class COgre : CGraphics{
-    
+		/**
+		Returns the class instance
+		*/
+		static COgre& getInstance();
+
 	protected:
+		/**
+		Constructor by default.
+		*/
+		COgre() = default;
 
-        /**
-        Constructor by default.
-        */
-        COgre() = default;
-        
-        /**
-        Destructor by default.
-        */
-        ~COgre() = default;
-        
-        /**
-        Returns the class instance
-        */
-        static COgre& getInstance();
-        
-        /**
-        Ogre3D initialization.
-        */
-        static void init();
+		/**
+		Destructor by default.
+		*/
+		~COgre() = default;
 
-		// Friends
-		friend class CGraphics;
+		/**
+		OpenGl initialization.
+		*/
+		void init() override;
 
+		/**
+		OpenGl release
+		*/
+		void release() override;
+
+		/**
+		Update graphics
+		*/
+		void tick(float msecs) override;
+	private:
 	};
 
 }

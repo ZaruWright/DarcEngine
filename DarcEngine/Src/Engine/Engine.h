@@ -42,6 +42,11 @@ namespace DarcEngine{
 		void init(const DarcGraphics::GraphicEngines &graphicEngine);
 
 		/**
+		Release all the parts of Darc Engine.
+		*/
+		void release();
+
+		/**
 		Starts to run the Darc Engine.
 		*/
 		void run();
@@ -55,8 +60,8 @@ namespace DarcEngine{
 		// Destructor by default
 		~CEngine() = default;
 
-		// Time elapsed to do a fixed loop
-		float _elapsedTime;
+		bool exit; // to exit from app
+
 	};
 }
 
