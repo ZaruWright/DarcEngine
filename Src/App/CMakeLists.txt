@@ -41,13 +41,13 @@ add_executable(App ${APP_SOURCES})
 
 # Additional dependencies
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	target_link_libraries(App Engine Graphics stGLUT opengl32.lib glu32.lib)
+	target_link_libraries(App Engine Graphics Utilities stGLUT opengl32.lib glu32.lib)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	target_link_libraries(App Engine Graphics stGLUT X11 GL GLU Xi Xmu)
+	target_link_libraries(App Engine Graphics Utilities stGLUT X11 GL GLU Xi Xmu)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries(App Engine Graphics ${OPEN_GL_OSX} ${GLUT_OSX})
+	target_link_libraries(App Engine Graphics Utilities ${OPEN_GL_OSX} ${GLUT_OSX})
 
 endif()
 

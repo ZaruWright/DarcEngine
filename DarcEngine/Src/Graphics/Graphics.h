@@ -12,7 +12,6 @@
 #ifndef GRAPHICS_GRAPHICS_H
 #define GRAPHICS_GRAPHICS_H
 
-#include "Enumerators.h"
 #include "Engine/Engine.h"
 
 namespace DarcGraphics{

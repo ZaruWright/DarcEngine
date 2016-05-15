@@ -9,13 +9,15 @@
 //
 //	Author: ZaruWright
 //
-#include <iostream>
 
 #include "Engine.h"
 #include "Time.h"
+
+#include "Utilities/Log.h"
+
 #include "Graphics/Graphics.h"
 #include "Graphics/OpenGl.h"
-
+#include <string>
 
 namespace DarcEngine {
 
@@ -28,7 +30,7 @@ namespace DarcEngine {
 
 	void CEngine::init(const DarcGraphics::GraphicEngines &graphicEngine)
 	{
-		std::cout << "Initializing Darc Engine..." << std::endl;
+		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Initializing Darc Engine...");
 		
         //DarcGraphics::CGraphics::init(graphicEngine);
 		//DarcGraphics::CGraphics::getInstance()
@@ -47,7 +49,7 @@ namespace DarcEngine {
 
 	void CEngine::release()
 	{
-		std::cout << "Release Darc Engine..." << std::endl;
+		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Release Darc Engine...");
 		DarcGraphics::CGraphics::getInstance()->release();
 
 	} // release
@@ -73,8 +75,8 @@ namespace DarcEngine {
 			#ifdef _DEBUG 
 			while (fps >= 1)
 			{
-				std::cout << "FPS: " << frames << std::endl;
-				std::cout << "Elapsed Time: " << elapsedTime << std::endl;
+				DarcUtilities::darcLog(DarcUtilities::ENGINE, "FPS: " + std::to_string(frames));
+				DarcUtilities::darcLog(DarcUtilities::ENGINE, "Elapsed Time: " + std::to_string(elapsedTime));
 				frames = 0;
 				fps = 0;
 			} 

@@ -9,10 +9,10 @@
 //
 //	Author: ZaruWright
 //
-#include <iostream>
 
 #include "Time.h"
 
+#include "Utilities/Log.h"
 
 namespace DarcEngine {
 
@@ -29,7 +29,7 @@ namespace DarcEngine {
 
 	void CTime::init()
 	{
-		std::cout << "Init Time..." << std::endl;
+		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Init Time...");
 		epoch = std::chrono::high_resolution_clock::now();
 		start = epoch;
 	} // init

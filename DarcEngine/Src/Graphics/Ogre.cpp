@@ -9,8 +9,10 @@
 //
 //	Author: ZaruWright
 //
-#include <iostream>
+
 #include "Ogre.h"
+
+#include "Utilities/Log.h"
 
 namespace DarcGraphics{
 
@@ -27,12 +29,12 @@ namespace DarcGraphics{
 
 	void COgre::init()
 	{
-		std::cout << "Init Ogre3D..." << std::endl;
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Init Ogre3D...");
 	} // init
 
 	void COgre::release()
 	{
-		std::cout << "Release Ogre3D..." << std::endl;
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Release Ogre3D...");
 	} // release
 
 	void COgre::tick(float msecs)

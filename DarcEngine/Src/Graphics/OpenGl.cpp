@@ -9,11 +9,12 @@
 //
 //	Author: ZaruWright
 //
-#include <iostream>
+
 #include "GL/glut.h"
 
 #include "OpenGl.h"
 
+#include "Utilities/Log.h"
 
 namespace DarcGraphics{
 
@@ -30,12 +31,12 @@ namespace DarcGraphics{
 
 	void COpenGl::init()
 	{
-		std::cout << "Init OpenGl..." << std::endl;
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Init OpenGl...");
 	} // init
 
 	void COpenGl::release()
 	{
-		std::cout << "Release OpenGl..." << std::endl;
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Release OpenGl...");
 	} // release
 
 	void COpenGl::tick(float msecs)
