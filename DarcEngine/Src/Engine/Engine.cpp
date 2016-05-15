@@ -17,6 +17,7 @@
 
 #include "Graphics/Graphics.h"
 #include "Graphics/OpenGl.h"
+#include "Graphics/Ogre.h"
 #include <string>
 
 namespace DarcEngine {
@@ -32,18 +33,20 @@ namespace DarcEngine {
 	{
 		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Initializing Darc Engine...");
 		
-        //DarcGraphics::CGraphics::init(graphicEngine);
-		//DarcGraphics::CGraphics::getInstance()
+		// Set the Graphic Engine that we want to use.
 		if (graphicEngine == DarcGraphics::GraphicEngines::OPENGL)
 			DarcGraphics::COpenGl::getInstance();
+		else if (graphicEngine == DarcGraphics::GraphicEngines::OGRE3D)
+			DarcGraphics::COgre::getInstance();
 
+		// Init Graphic Engine
 		DarcGraphics::CGraphics::getInstance()->init();
 
 		// The last thing we do is init the Time.
 		DarcEngine::CTime::init();
 
 		// Starts to run app
-		//run();
+		run();
 
 	} // init
 
@@ -58,30 +61,42 @@ namespace DarcEngine {
 	{
 		// To init time
 		CTime::getInstance().elapsedTime();
+
+		// Const variables
+		const float dt = 1.0f/60.0f;
+
+		// Aux variables
 		float newElapsedTime = 0;
-		float elapsedTime = 0;
-		float fps = 0;
+		float accumulatedDt = 0;
+		float accumulatedSecond = 0;
+		float gameTime = 0;
 		unsigned int frames = 0;
+		
 		while (!exit)
 		{
-			++frames; // Add a new frame
-
 			newElapsedTime = CTime::getInstance().elapsedTime(); // Get the elapsed time
-			elapsedTime += newElapsedTime;
-			fps += newElapsedTime;
+			accumulatedDt += newElapsedTime;
+			accumulatedSecond += newElapsedTime;
+			gameTime += newElapsedTime;
 
-			//DarcGraphics::CGraphics::getInstance().tick(newElapsedTime);
-
-			#ifdef _DEBUG 
-			while (fps >= 1)
+			while (accumulatedDt >= dt)
 			{
-				DarcUtilities::darcLog(DarcUtilities::ENGINE, "FPS: " + std::to_string(frames));
-				DarcUtilities::darcLog(DarcUtilities::ENGINE, "Elapsed Time: " + std::to_string(elapsedTime));
+				// tick(dt)
+				++frames;
+				accumulatedDt -= dt;
+			}
+
+			while (accumulatedSecond >= 1)
+			{
+				DarcUtilities::darcLog(DarcUtilities::ENGINE, "Frames = " + std::to_string(frames));
+				DarcUtilities::darcLog(DarcUtilities::ENGINE, "Game Time = " + std::to_string(gameTime));
 				frames = 0;
-				fps = 0;
-			} 
-			#endif
+				accumulatedSecond -= 1;
+			}
+			
+			// GraphicsTick
 		}
+
 	} // run
 
 };

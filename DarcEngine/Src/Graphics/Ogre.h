@@ -17,6 +17,8 @@
 namespace DarcGraphics{
 
     class COgre : CGraphics{
+	public:
+
 		/**
 		Returns the class instance
 		*/
