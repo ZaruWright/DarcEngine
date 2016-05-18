@@ -14,6 +14,8 @@
 
 #include "Graphics/Enumerators.h"
 
+#include "Application/DarcApplication.h"
+
 namespace DarcEngine{
 
 	class CEngine{
@@ -39,7 +41,7 @@ namespace DarcEngine{
         /**
         Initialization of DarcEngine. Here we initialize the Graphics, Sounds, etc..
         */
-		void init(const DarcGraphics::GraphicEngines &graphicEngine);
+		void init(const DarcGraphics::GraphicEngines &graphicEngine, DarcApplication::IDarcApplication& app);
 
 		/**
 		Release all the parts of Darc Engine.
@@ -53,14 +55,16 @@ namespace DarcEngine{
 
 	private:
 
-		// Constructor by default. It is private because
+		// Constructor. It is private because
 		// you only can get the class instance from getInstance method.
 		CEngine() = default;
 
 		// Destructor by default
 		~CEngine() = default;
 
-		bool exit; // to exit from app
+		DarcApplication::IDarcApplication* _app;
+
+		bool _exit; // to exit from app
 
 	};
 }

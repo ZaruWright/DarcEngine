@@ -8,6 +8,7 @@ include_directories(${CMAKE_SOURCE_DIR}/DarcEngine/Src)
 # Additional Library Directories
 link_directories(${CMAKE_SOURCE_DIR}/DarcEngine/_build/lib)
 link_directories(${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib) # OpenGl
+link_directories(${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/GLFW/lib) # OpenGl
 
 # Adding OpenGl library
 add_library(stGLUT STATIC IMPORTED)
@@ -41,13 +42,13 @@ add_executable(App ${APP_SOURCES})
 
 # Additional dependencies
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	target_link_libraries(App Engine Graphics Utilities stGLUT opengl32.lib glu32.lib)
+	target_link_libraries(App Engine Graphics Utilities Application stGLUT opengl32.lib glu32.lib glfw3_d.lib)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	target_link_libraries(App Engine Graphics Utilities stGLUT X11 GL GLU Xi Xmu)
+	target_link_libraries(App Engine Graphics Utilities Application stGLUT X11 GL GLU Xi Xmu)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries(App Engine Graphics Utilities ${OPEN_GL_OSX} ${GLUT_OSX})
+	target_link_libraries(App Engine Graphics Utilities Application ${OPEN_GL_OSX} ${GLUT_OSX})
 
 endif()
 

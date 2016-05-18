@@ -4,6 +4,10 @@ file (GLOB ENGINE_SOURCES
 
 # Additional include directories
 include_directories(${CMAKE_SOURCE_DIR}/Src)
+
+include_directories(${CMAKE_SOURCE_DIR}/Dependencies/GLFW/include) # GLFW
+include_directories(${CMAKE_SOURCE_DIR}/Dependencies/GLFW/deps) # GLFW
+
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	include_directories(/System/Library/Frameworks/GLUT.framework/Headers) # OpenGl
 

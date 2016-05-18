@@ -27,10 +27,23 @@ namespace DarcGraphics{
 		return instance;
 	} // getInstance
 
-	void COgre::init()
+	bool COgre::init()
 	{
 		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Init Ogre3D...");
+
+		return true;
 	} // init
+
+	bool COgre::closedWindow()
+	{
+	
+		return true;
+	} // closedWindow
+
+	void COgre::updateWindow()
+	{
+
+	} // updateWindow
 
 	void COgre::release()
 	{

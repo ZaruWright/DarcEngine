@@ -3,6 +3,8 @@ file (GLOB GRAPHICS_SOURCES
 		"*.cpp")
 
 # Additional include directories
+include_directories(${CMAKE_SOURCE_DIR}/Dependencies/GLFW/include) # GLFW
+include_directories(${CMAKE_SOURCE_DIR}/Dependencies/GLFW/deps) # GLFW
 include_directories(${CMAKE_SOURCE_DIR}/Dependencies/OpenGl/include) # OpenGl
 include_directories(${CMAKE_SOURCE_DIR}/Src)
 

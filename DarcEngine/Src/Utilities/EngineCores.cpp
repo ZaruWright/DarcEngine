@@ -18,6 +18,7 @@ namespace DarcUtilities
 		{ 
 			"Engine",
 			"Graphics",
-			"Utilities"
+			"Utilities",
+			"Application"
 		};
 }

@@ -15,6 +15,8 @@
 #include "Graphics.h"
 #include "Engine/Engine.h"
 
+#include "GLFW/glfw3.h"
+
 namespace DarcGraphics{
 
     class COpenGl : public CGraphics{
@@ -38,7 +40,18 @@ namespace DarcGraphics{
         /**
         OpenGl initialization.
         */
-		void init() override;
+		bool init() override;
+
+		/**
+		Gives if OpenGl windows is open or not.
+		*/
+		bool closedWindow() override;
+
+		/**
+		To update an OpengL window we need to swap buffers and
+		process the windows events.
+		*/
+		void updateWindow() override;
 
 		/**
 		OpenGl release
@@ -51,6 +64,7 @@ namespace DarcGraphics{
 		void tick(float msecs) override;
 
 	private:
+		GLFWwindow* _window = nullptr;
 	};
 
 }

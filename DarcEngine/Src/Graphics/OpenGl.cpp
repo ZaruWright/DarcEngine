@@ -29,14 +29,58 @@ namespace DarcGraphics{
 		return instance;
 	} // getInstance
 
-	void COpenGl::init()
+	bool COpenGl::init()
 	{
 		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Init OpenGl...");
+
+		// Initialize the library
+		if (!glfwInit())
+			return false;
+
+		// Create a windowed mode window and its OpenGL context
+		_window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+		if (!_window)
+		{
+			glfwTerminate();
+			return false;
+		}
+
+		// Make the window's context current
+		glfwMakeContextCurrent(_window);
+
+		// Loop until the user closes the window 
+		/*while (!glfwWindowShouldClose(window))
+		{
+			// Render here 
+
+			// Swap front and back buffers 
+			glfwSwapBuffers(window);
+
+			// Poll for and process events 
+			glfwPollEvents();
+		}*/
+
+		return true;
 	} // init
+
+	bool COpenGl::closedWindow()
+	{
+		return glfwWindowShouldClose(_window) == 1;
+	} // closedWindow
+
+	void COpenGl::updateWindow()
+	{
+		// Swap front and back buffers 
+		glfwSwapBuffers(_window);
+
+		// Poll for and process events 
+		glfwPollEvents();
+	} // updateWindow
 
 	void COpenGl::release()
 	{
 		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Release OpenGl...");
+		glfwTerminate();
 	} // release
 
 	void COpenGl::tick(float msecs)

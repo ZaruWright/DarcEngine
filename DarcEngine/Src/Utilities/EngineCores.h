@@ -31,7 +31,8 @@ namespace DarcUtilities
 	enum EEngineCore{
 		ENGINE,
 		GRAPHICS,
-		UTILITIES
+		UTILITIES,
+		APPLICATION
 	};
 }
 

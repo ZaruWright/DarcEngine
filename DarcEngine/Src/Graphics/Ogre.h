@@ -36,12 +36,22 @@ namespace DarcGraphics{
 		~COgre() = default;
 
 		/**
-		OpenGl initialization.
+		Ogre initialization.
 		*/
-		void init() override;
+		bool init() override;
 
 		/**
-		OpenGl release
+		Gives if Ogre windows is open or not.
+		*/
+		bool closedWindow() override;
+
+		/**
+		
+		*/
+		void updateWindow() override;
+
+		/**
+		Ogre release
 		*/
 		void release() override;
 

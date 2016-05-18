@@ -15,6 +15,8 @@
 
 #include "Utilities/Log.h"
 
+#include "Application/DarcApplication.h"
+
 #include "Graphics/Graphics.h"
 #include "Graphics/OpenGl.h"
 #include "Graphics/Ogre.h"
@@ -29,36 +31,48 @@ namespace DarcEngine {
 		return instance;
 	} // getInstance
 
-	void CEngine::init(const DarcGraphics::GraphicEngines &graphicEngine)
+	void CEngine::init(const DarcGraphics::GraphicEngines &graphicEngine, DarcApplication::IDarcApplication& app)
 	{
 		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Initializing Darc Engine...");
-		
+
 		// Set the Graphic Engine that we want to use.
 		if (graphicEngine == DarcGraphics::GraphicEngines::OPENGL)
 			DarcGraphics::COpenGl::getInstance();
 		else if (graphicEngine == DarcGraphics::GraphicEngines::OGRE3D)
 			DarcGraphics::COgre::getInstance();
 
-		// Init Graphic Engine
+		// Init Graphic Engine.
 		DarcGraphics::CGraphics::getInstance()->init();
+
+		// Set the "App engine" from the user and call to the init
+		_app = &app;
+		_app->init();
 
 		// The last thing we do is init the Time.
 		DarcEngine::CTime::init();
 
 		// Starts to run app
-		run();
+		//run();
 
 	} // init
 
 	void CEngine::release()
 	{
 		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Release Darc Engine...");
+
+		_app->release();
 		DarcGraphics::CGraphics::getInstance()->release();
+
+		// Set to nullptr variables
+		_app = nullptr;
 
 	} // release
 
 	void CEngine::run()
 	{
+
+		DarcGraphics::CGraphics* graphics = DarcGraphics::CGraphics::getInstance();
+
 		// To init time
 		CTime::getInstance().elapsedTime();
 
@@ -71,8 +85,9 @@ namespace DarcEngine {
 		float accumulatedSecond = 0;
 		float gameTime = 0;
 		unsigned int frames = 0;
+		_exit = false;
 		
-		while (!exit)
+		while (!_exit)
 		{
 			newElapsedTime = CTime::getInstance().elapsedTime(); // Get the elapsed time
 			accumulatedDt += newElapsedTime;
@@ -82,6 +97,7 @@ namespace DarcEngine {
 			while (accumulatedDt >= dt)
 			{
 				// tick(dt)
+				_app->run(dt);
 				++frames;
 				accumulatedDt -= dt;
 			}
@@ -95,6 +111,11 @@ namespace DarcEngine {
 			}
 			
 			// GraphicsTick
+
+			if (graphics->closedWindow())
+				_exit = true;
+
+			graphics->updateWindow();
 		}
 
 	} // run

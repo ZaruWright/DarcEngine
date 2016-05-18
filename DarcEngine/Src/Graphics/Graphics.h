@@ -42,12 +42,23 @@ namespace DarcGraphics{
 		In this moment, you can choose between "GraphicEngines::OGRE3D"
 		and "GraphicEngines::OPENGL" as Graphic Engine.
 		*/
-		virtual void init() = 0;
+		virtual bool init() = 0;
 
 		/**
 		Release our Graphic Engine.
 		*/
 		virtual void release() = 0;
+
+		/**
+		Gives if graphic windows is open or not.
+		*/
+		virtual bool closedWindow() = 0;
+
+		/**
+		Here The graphics engine do the necessary operations to update
+		the window, as swapping buffers or processing events.
+		*/
+		virtual void updateWindow() = 0;
 
 		/**
 		Update the graphic engine
