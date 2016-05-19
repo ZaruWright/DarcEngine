@@ -14,6 +14,8 @@
 
 #include "OpenGl.h"
 
+#include "Scene.h"
+
 #include "Utilities/Log.h"
 
 namespace DarcGraphics{
@@ -31,7 +33,7 @@ namespace DarcGraphics{
 
 	bool COpenGl::init()
 	{
-		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Init OpenGl...");
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, std::string("Init OpenGl..."));
 
 		// Initialize the library
 		if (!glfwInit())
@@ -48,17 +50,8 @@ namespace DarcGraphics{
 		// Make the window's context current
 		glfwMakeContextCurrent(_window);
 
-		// Loop until the user closes the window 
-		/*while (!glfwWindowShouldClose(window))
-		{
-			// Render here 
-
-			// Swap front and back buffers 
-			glfwSwapBuffers(window);
-
-			// Poll for and process events 
-			glfwPollEvents();
-		}*/
+		// Create an scene
+		_scene = new CScene();
 
 		return true;
 	} // init
@@ -79,13 +72,22 @@ namespace DarcGraphics{
 
 	void COpenGl::release()
 	{
-		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Release OpenGl...");
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, std::string("Release OpenGl..."));
+
+		// Delete scene
+		delete _scene;
+		_scene = nullptr;
+
+		// Delete OpenGl stuff
+		glfwDestroyWindow(_window);
 		glfwTerminate();
+
 	} // release
 
-	void COpenGl::tick(float msecs)
+	void COpenGl::tick()
 	{
-		
+		_scene->tick();
+		updateWindow();
 	} // tick
 
 }

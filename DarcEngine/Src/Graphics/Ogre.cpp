@@ -29,7 +29,7 @@ namespace DarcGraphics{
 
 	bool COgre::init()
 	{
-		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Init Ogre3D...");
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, std::string("Init Ogre3D..."));
 
 		return true;
 	} // init
@@ -47,10 +47,10 @@ namespace DarcGraphics{
 
 	void COgre::release()
 	{
-		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, "Release Ogre3D...");
+		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, std::string("Release Ogre3D..."));
 	} // release
 
-	void COgre::tick(float msecs)
+	void COgre::tick()
 	{
 
 	} // tick

@@ -61,7 +61,7 @@ namespace DarcGraphics{
 		/**
 		Update graphics
 		*/
-		void tick(float msecs) override;
+		void tick() override;
 
 	private:
 		GLFWwindow* _window = nullptr;

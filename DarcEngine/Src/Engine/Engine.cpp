@@ -33,7 +33,7 @@ namespace DarcEngine {
 
 	void CEngine::init(const DarcGraphics::GraphicEngines &graphicEngine, DarcApplication::IDarcApplication& app)
 	{
-		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Initializing Darc Engine...");
+		DarcUtilities::darcLog(DarcUtilities::ENGINE, std::string("Initializing Darc Engine..."));
 
 		// Set the Graphic Engine that we want to use.
 		if (graphicEngine == DarcGraphics::GraphicEngines::OPENGL)
@@ -58,7 +58,7 @@ namespace DarcEngine {
 
 	void CEngine::release()
 	{
-		DarcUtilities::darcLog(DarcUtilities::ENGINE, "Release Darc Engine...");
+		DarcUtilities::darcLog(DarcUtilities::ENGINE, std::string("Release Darc Engine..."));
 
 		_app->release();
 		DarcGraphics::CGraphics::getInstance()->release();
@@ -110,12 +110,12 @@ namespace DarcEngine {
 				accumulatedSecond -= 1;
 			}
 			
-			// GraphicsTick
+			// Update graphics
+			graphics->tick();
 
 			if (graphics->closedWindow())
 				_exit = true;
 
-			graphics->updateWindow();
 		}
 
 	} // run

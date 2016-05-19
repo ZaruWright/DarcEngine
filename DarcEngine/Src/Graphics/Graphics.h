@@ -13,6 +13,7 @@
 #define GRAPHICS_GRAPHICS_H
 
 #include "Engine/Engine.h"
+#include "Scene.h"
 
 namespace DarcGraphics{
 
@@ -63,14 +64,22 @@ namespace DarcGraphics{
 		/**
 		Update the graphic engine
 		*/
-		virtual void tick(float msecs) = 0;
+		virtual void tick() = 0;
 
+		/**
+		Window settings
+		*/
 		float _windowWidth;
 		float _windowHeight;
 		float _windowPositionX;
 		float _windowpositionY;
 
+		// Graphic engine instance, for example could be
+		// between OpenGl and Ogre3D
 		static CGraphics* _graphicInstance;
+
+		// We have an scene, in which we paint all the entities
+		CScene* _scene;
 
 		// friends
 		friend class DarcEngine::CEngine;
