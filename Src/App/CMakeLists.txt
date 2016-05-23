@@ -15,6 +15,7 @@ link_directories(${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/GLFW/lib) # OpenGl
 add_library(stGLUT STATIC IMPORTED)
 
 # Adding GLFW library
+add_library(glfw STATIC IMPORTED)
 add_library(glfwDebug STATIC IMPORTED)
 add_library(glfwRelease STATIC IMPORTED)
 
@@ -34,6 +35,10 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	set_property(TARGET stGLUT PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/libglut.a)
 	install (FILES ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/OpenGl/lib/libglut.3.6.so DESTINATION "${PROJECT_BINARY_DIR}/bin")
 
+	set_property(TARGET glfw PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/GLFW/lib/libglfw3.a)	
+	# Copy glfw debug and release
+	#install (FILES ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/GLFW/lib/libglfw3.a DESTINATION "${PROJECT_BINARY_DIR}/bin/Debug")
+
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 	find_library(OPEN_GL_OSX OpenGL)
@@ -48,10 +53,10 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 endif()
 
-
 # Create executable
 add_executable(App ${APP_SOURCES})
 message ("---CMAKE_BUILD_TYPE " ${CMAKE_BUILD_TYPE})
+
 # Additional dependencies
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
@@ -60,7 +65,9 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	target_link_libraries(App Engine Graphics Utilities Application stGLUT X11 GL GLU Xi Xmu)
+	#target_link_libraries(App Engine Graphics Utilities Application glfw stGLUT X11 GL GLU Xi Xmu Xxf86vm Xrandr Xinerama Xcursor rt )
+	 target_link_libraries(App debug libEngine_d.a libGraphics_d.a libUtilities_d.a libApplication_d.a glfw X11 Xrandr Xinerama Xi Xxf86vm Xcursor GL dl pthread)
+	 target_link_libraries(App optimized libEngine.a libGraphics.a libUtilities.a libApplication.a glfw X11 Xrandr Xinerama Xi Xxf86vm Xcursor GL dl pthread)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	target_link_libraries(App Engine Graphics Utilities Application ${OPEN_GL_OSX} ${GLUT_OSX})

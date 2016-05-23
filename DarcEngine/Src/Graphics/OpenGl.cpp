@@ -10,8 +10,6 @@
 //	Author: ZaruWright
 //
 
-#include "GL/glut.h"
-
 #include "OpenGl.h"
 
 #include "Scene.h"

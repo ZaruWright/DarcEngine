@@ -10,6 +10,7 @@ message ("---CMAKE_SYSTEM_NAME " ${CMAKE_SYSTEM_NAME})
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wwrite-strings -std=c++11")
 	message("---CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS})
+
 endif()
 
 # Turn on the ability to create folders to organize projects (.vcproj)

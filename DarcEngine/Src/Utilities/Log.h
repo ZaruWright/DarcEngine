@@ -19,9 +19,9 @@ namespace DarcUtilities
 	/**
 	Function to log something on Darc Engine.
 	*/
-	void darcLog(EEngineCore core, std::string& message);
+	void darcLog(EEngineCore core, const std::string& message);
 
-	void darcAssert(bool expresion, std::string& message);
+	void darcAssert(bool expresion, const std::string& message);
 }
 
 #endif // UTILITIES_LOG_H

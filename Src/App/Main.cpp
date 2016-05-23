@@ -22,10 +22,11 @@ int main (int argc, char* argv[]){
 	std::cout << "Funciona" << std::endl;
 
 	// Init stuff
-	DarcApplication::IDarcApplication& app = App::CApp();
+	App::CApp app = App::CApp();
+	DarcApplication::IDarcApplication& darcApp = app;
 	DarcEngine::CEngine& darcEngine = DarcEngine::CEngine::getInstance();
 
-    darcEngine.init(DarcGraphics::GraphicEngines::OPENGL, app);
+    darcEngine.init(DarcGraphics::GraphicEngines::OPENGL, darcApp);
 	darcEngine.run();
 	darcEngine.release();
 

@@ -5,7 +5,10 @@ if [ ! -d "$DIRECTORY" ]; then
 fi
 
 cd "$DIRECTORY"
-cmake ../ -G "Unix Makefiles"
+cmake ../ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
+make
+make install
+cmake ../ -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
 make
 make install
 cd ..
