@@ -18,6 +18,8 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows" OR
 endif()
 
 add_library(Engine STATIC ${ENGINE_SOURCES})
+set_target_properties(Engine PROPERTIES DEBUG_POSTFIX "_d")
 
 # For copy .lib
-install (TARGETS Engine DESTINATION "${PROJECT_BINARY_DIR}/lib")
+install (TARGETS Engine DESTINATION "${PROJECT_BINARY_DIR}/lib/Release" CONFIGURATIONS "Release")
+install (TARGETS Engine DESTINATION "${PROJECT_BINARY_DIR}/lib/Debug" CONFIGURATIONS "Debug")
