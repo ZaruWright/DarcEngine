@@ -6,5 +6,6 @@ fi
 
 cd "$DIRECTORY"
 cmake ../ -G "Xcode"
-xcodebuild -target install
+xcodebuild -target install -configuration Debug
+xcodebuild -target install -configuration Release
 cd ..

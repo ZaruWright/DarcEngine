@@ -17,8 +17,8 @@
 namespace DarcEngine {
 
 	// Declarations
-	std::chrono::time_point<std::chrono::system_clock> CTime::epoch;
-	std::chrono::time_point<std::chrono::system_clock> CTime::start;
+	std::chrono::time_point<std::chrono::high_resolution_clock> CTime::epoch;
+	std::chrono::time_point<std::chrono::high_resolution_clock> CTime::start;
 
 	CTime& CTime::getInstance()
 	{

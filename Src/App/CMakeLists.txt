@@ -51,6 +51,9 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 		message("--- FATAL ERROR: GLUT not found")
 	endif()	
 
+	set_property(TARGET glfwDebug PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/GLFW/lib/libglfw3_mac_d.a)
+	set_property(TARGET glfwRelease PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/DarcEngine/Dependencies/GLFW/lib/libglfw3_mac.a)
+
 endif()
 
 # Create executable
@@ -70,7 +73,8 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	 target_link_libraries(App optimized libEngine.a libGraphics.a libUtilities.a libApplication.a glfw X11 Xrandr Xinerama Xi Xxf86vm Xcursor GL dl pthread)
 
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries(App Engine Graphics Utilities Application ${OPEN_GL_OSX} ${GLUT_OSX})
+	target_link_libraries(App debug libEngine_d.a libGraphics_d.a libUtilities_d.a libApplication_d.a glfwDebug "-framework cocoa" "-framework OpenGL" "-framework IOKit" "-framework CoreVideo")  
+	target_link_libraries(App optimized libEngine.a libGraphics.a libUtilities.a libApplication.a glfwRelease "-framework cocoa" "-framework OpenGL" "-framework IOKit" "-framework CoreVideo")
 
 endif()
 

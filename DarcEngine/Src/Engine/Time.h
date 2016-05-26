@@ -56,11 +56,11 @@ namespace DarcEngine{
 		~CTime() = default;
 
 		// Start time
-		static std::chrono::time_point<std::chrono::system_clock> epoch;
+		static std::chrono::time_point<std::chrono::high_resolution_clock> epoch;
 
 		// Used to know the elapsed time between start and end. 
-		static std::chrono::time_point<std::chrono::system_clock> start;
-		std::chrono::time_point<std::chrono::system_clock> end;
+		static std::chrono::time_point<std::chrono::high_resolution_clock> start;
+		std::chrono::time_point<std::chrono::high_resolution_clock> end;
 	};
 }
 
