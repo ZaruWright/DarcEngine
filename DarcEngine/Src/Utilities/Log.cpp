@@ -18,11 +18,11 @@ namespace DarcUtilities
 {
 	void darcLog(EEngineCore core, const std::string& message)
 	{
-		#if defined(_DEBUG) || defined(NDEBUG)
+		#if _DEBUG
 
 		std::cout << CEngineCores::engineCores[core].c_str() << ": " << message.c_str() << std::endl;
 
-		#endif //defined(_DEBUG) || defined(NDEBUG)
+		#endif //_DEBUG
 	} // darcLog
 
 	void darcAssert(bool expresion, const std::string& message)
