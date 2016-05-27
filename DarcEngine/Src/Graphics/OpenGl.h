@@ -48,10 +48,16 @@ namespace DarcGraphics{
 		bool closedWindow() override;
 
 		/**
+		When starts to paint in OpenGl, we need to clear window to can
+		redraw a new frame.
+		*/
+		void repaintWindow();
+
+		/**
 		To update an OpengL window we need to swap buffers and
 		process the windows events.
 		*/
-		void updateWindow() override;
+		void updateWindow();
 
 		/**
 		OpenGl release

@@ -16,6 +16,14 @@
 
 namespace DarcGraphics
 {
+
+	CScene& CScene::getInstance()
+	{
+		static CScene instance; // Guaranteed to be destroyed.
+		// Instantiated on first use.
+		return instance;
+	} // getInstance
+
 	void CScene::addEntity(IEntity* entity)
 	{
 		// Only in debug check if there are entities with

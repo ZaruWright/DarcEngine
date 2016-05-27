@@ -48,9 +48,6 @@ namespace DarcGraphics{
 		// Make the window's context current
 		glfwMakeContextCurrent(_window);
 
-		// Create an scene
-		_scene = new CScene();
-
 		return true;
 	} // init
 
@@ -59,8 +56,28 @@ namespace DarcGraphics{
 		return glfwWindowShouldClose(_window) == 1;
 	} // closedWindow
 
+	void COpenGl::repaintWindow()
+	{
+		float ratio;
+		int width, height;
+
+		glfwGetFramebufferSize(_window, &width, &height);
+		ratio = width / (float)height;
+
+		glViewport(0, 0, width, height);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
+		glMatrixMode(GL_MODELVIEW);
+	}
+
 	void COpenGl::updateWindow()
 	{
+		// End painting
+		glEnd();
+
 		// Swap front and back buffers 
 		glfwSwapBuffers(_window);
 
@@ -72,10 +89,6 @@ namespace DarcGraphics{
 	{
 		DarcUtilities::darcLog(DarcUtilities::GRAPHICS, std::string("Release OpenGl..."));
 
-		// Delete scene
-		delete _scene;
-		_scene = nullptr;
-
 		// Delete OpenGl stuff
 		glfwDestroyWindow(_window);
 		glfwTerminate();
@@ -84,7 +97,8 @@ namespace DarcGraphics{
 
 	void COpenGl::tick()
 	{
-		_scene->tick();
+		repaintWindow();
+		CScene::getInstance().tick();
 		updateWindow();
 	} // tick
 

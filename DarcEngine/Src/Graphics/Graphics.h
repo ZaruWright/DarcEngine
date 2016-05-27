@@ -56,12 +56,6 @@ namespace DarcGraphics{
 		virtual bool closedWindow() = 0;
 
 		/**
-		Here The graphics engine do the necessary operations to update
-		the window, as swapping buffers or processing events.
-		*/
-		virtual void updateWindow() = 0;
-
-		/**
 		Update the graphic engine
 		*/
 		virtual void tick() = 0;
@@ -77,9 +71,6 @@ namespace DarcGraphics{
 		// Graphic engine instance, for example could be
 		// between OpenGl and Ogre3D
 		static CGraphics* _graphicInstance;
-
-		// We have an scene, in which we paint all the entities
-		CScene* _scene;
 
 		// friends
 		friend class DarcEngine::CEngine;

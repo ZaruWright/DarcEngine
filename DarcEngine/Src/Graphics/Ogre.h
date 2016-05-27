@@ -48,7 +48,7 @@ namespace DarcGraphics{
 		/**
 		
 		*/
-		void updateWindow() override;
+		void updateWindow();
 
 		/**
 		Ogre release

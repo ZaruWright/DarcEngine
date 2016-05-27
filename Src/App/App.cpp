@@ -11,6 +11,10 @@
 //
 
 #include "App.h"
+
+// Darc includes
+#include "Graphics/Scene.h"
+
 #include <iostream>
 
 namespace App
@@ -18,6 +22,11 @@ namespace App
 	bool CApp::init()
 	{
 		std::cout << "Init App" << std::endl;
+		
+		triangle = new DarcGraphics::CTriangle(std::string("Triangle"));
+
+		DarcGraphics::CScene::getInstance().addEntity(triangle);
+
 		return true;
 	}
 
@@ -30,6 +39,7 @@ namespace App
 	bool CApp::release()
 	{
 		std::cout << "Release App" << std::endl;
+		delete triangle;
 		return true;
 	}
 };

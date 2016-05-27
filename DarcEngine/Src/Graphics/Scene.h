@@ -21,12 +21,38 @@ namespace DarcGraphics
 	class CScene{
 	public:
 
+		/**
+		Returns the class instance
+		*/
+		static CScene& getInstance();
+
+		/**
+		We do no not allow to copy the instance, we'll
+		want have only one.
+		*/
+		CScene(const CScene &scene) = delete; // Disallowed to do a copy
+
+		/**
+		By the same reason of above, we do not allow the operator =.
+		*/
+		void operator=(const CScene &scene) = delete; // Disallowed used the operator =
+
+		/**
+		Add an entity to the scene.
+		*/
 		void addEntity(IEntity* entity);
 
 		void tick();
 
+	protected:
+
+		CScene() = default;
+
+		
+
 	private:
 		std::vector<IEntity*> _entities;
+
 	}; // CScene
 }
 

@@ -11,6 +11,7 @@
 //
 
 #include "Application/DarcApplication.h"
+#include "Graphics/Triangle.h"
 
 namespace App
 {
@@ -20,5 +21,8 @@ namespace App
 		bool init() override;
 		bool run(float secs) override;
 		bool release() override;
+
+	private:
+		DarcGraphics::CTriangle* triangle;
 	};
 }

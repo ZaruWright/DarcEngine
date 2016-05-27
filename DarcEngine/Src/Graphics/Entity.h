@@ -18,10 +18,25 @@ namespace DarcGraphics
 {
 	class IEntity{
 	public:
+		
+		/**
+		Constructor with a name entity.
+		*/
+		IEntity(const std::string& name) : _name(name){}
+
+		/**
+		Virtual method that all classes that implements IEntity 
+		have to override. Here the entity paints on the window.
+		*/
 		virtual void draw() = 0;
+
+		/**
+		Name getter.
+		*/
 		std::string getName() const { return _name; };
 
 	private:
+		// Entity name
 		std::string _name;
 
 	}; // IEntity
